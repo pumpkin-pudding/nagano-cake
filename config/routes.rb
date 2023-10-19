@@ -15,6 +15,11 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
 
+resources :admin do
+  resource :items, only: [:show, :edit]
+  # resource :genres, only: [:create, :edit]
+end
+
 get 'admin/genres' => 'admin/genres#index'
 post 'admin/genres' => 'admin/genres#create'
 patch '/admin/genres/:id' => 'admin/genres#update', as: 'update_genre'
