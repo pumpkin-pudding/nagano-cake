@@ -11,7 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2023_10_19_014157) do
-ActiveRecord::Schema.define(version: 2023_10_18_111536) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -42,6 +41,10 @@ ActiveRecord::Schema.define(version: 2023_10_18_111536) do
   end
 
   create_table "addresses", force: :cascade do |t|
+    t.integer "customer_id", null: false
+    t.string "adress", null: false
+    t.string "zip_code", null: false
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -82,11 +85,11 @@ ActiveRecord::Schema.define(version: 2023_10_18_111536) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.integer "genre_id"
-    t.string "name"
-    t.text "text"
-    t.boolean "is_active"
-    t.integer "non_taxed_price"
+    t.integer "genre_id", null: false
+    t.string "name", null: false
+    t.text "text", null: false
+    t.boolean "is_active", default: true, null: false
+    t.integer "non_taxed_price", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -97,6 +100,14 @@ ActiveRecord::Schema.define(version: 2023_10_18_111536) do
   end
 
   create_table "orders", force: :cascade do |t|
+    t.integer "customer_id", null: false
+    t.string "name", null: false
+    t.string "address", null: false
+    t.string "zip_code", null: false
+    t.integer "postage", null: false
+    t.integer "billing_amount", null: false
+    t.integer "payment_method", null: false
+    t.integer "status", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
