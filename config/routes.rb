@@ -15,7 +15,6 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
 
-
 resources :admin do
   resource :items, only: [:show, :edit]
   # resource :genres, only: [:create, :edit]
@@ -23,7 +22,9 @@ end
 
 get 'admin/genres' => 'admin/genres#index'
 post 'admin/genres' => 'admin/genres#create'
-get 'admin/genres/:id/edit' => 'admin/genres#edit', as: 'edit_genre'
 patch '/admin/genres/:id' => 'admin/genres#update', as: 'update_genre'
+get 'admin/genres/:id/edit' => 'admin/genres#edit', as: 'edit_genre'
+
+get 'admin/customers/:id/edit' => 'admin/customers#edit', as: 'edit_customer'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
