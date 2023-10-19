@@ -1,11 +1,11 @@
 class CreateItems < ActiveRecord::Migration[6.1]
   def change
     create_table :items do |t|
-      t.integer :genre_id
-      t.string :name
-      t.text :text
-      t.boolean :is_active
-      t.integer :non_taxed_price
+      t.integer :genre_id, null: false
+      t.string :name, null: false
+      t.text :text, null: false
+      t.boolean :is_active, null: false, default: true
+      t.integer :non_taxed_price, null: false
       t.timestamps
     end
   end

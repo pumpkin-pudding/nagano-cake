@@ -1,4 +1,5 @@
 class Admin::ItemsController < ApplicationController
+<<<<<<< HEAD
   def index
     @items = Item.page(params[:page])
   end
@@ -9,4 +10,18 @@ class Admin::ItemsController < ApplicationController
     @genre = Genre.new
   end
 
+=======
+ def show
+  @item = Item.find(params[:id]) 
+ end
+ 
+ def edit
+  @item = Item.find(params[:id])
+ end
+ 
+ private
+ def item_params
+  params.require(:item).permit(:genre_id, :name, :text, :non_taxed_price, :is_active)
+ end 
+>>>>>>> origin/develop
 end

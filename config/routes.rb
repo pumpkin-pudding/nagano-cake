@@ -16,9 +16,10 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 }
 
 
-# resources :admin do
+resources :admin do
+  resource :items, only: [:show, :edit, :index, :new]
   # resource :genres, only: [:create, :edit]
-# end
+end
 
 get 'admin/genres' => 'admin/genres#index'
 post 'admin/genres' => 'admin/genres#create'

@@ -1,8 +1,22 @@
 <h2>商品詳細</h2>
-
-<%= image_tag @item.get_image %>
-<p>商品名：<%= @item.name %></p>
-<p>商品説明：<%= @item.text %></p>
-<p>ジャンル：<%= @item.genre_id %></p>
-<p>税抜き価格：<%= @item.non_taxed_price %></p>
-<p>販売ステータス</p>
+<div class='container'>
+    <div class='row'>
+        <div class="col-md-4">
+            <%= image_tag @item.get_image %>
+        </div>
+        <div class="col-md-6">
+            <table class='table'>
+                <tr>
+                    <td><p>商品名 <%= @item.name %></p></td>
+                    <td><p>商品説明 <%= @item.text %></p></td>
+                    <td><p>ジャンル <%= @item.genre_id %></p></td>
+                    <td><p>税抜き価格 <%= @item.non_taxed_price %></p></td>
+                    <td><p>販売ステータス</p></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class='row'>
+        <%= link_to '編集する', edit_admin_items_path, class: "btn btn-success btn-sm btn-block mb-3" %>
+    </div>
+</div>
