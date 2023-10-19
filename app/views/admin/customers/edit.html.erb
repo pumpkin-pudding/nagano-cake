@@ -2,11 +2,11 @@
 
 <h2><%= (@customer.last_name + @customer.first_name) %>さんの会員情報編集</h2>
 
-<%= form_with model: @customer url: edit_customer_path, method: :patch do |f| %>
+<%= form_with model: @customer,url: edit_customer_path, method: :patch do |f| %>
 <table class="table table-borderless">
             <thead>
               <tr>
-                <td><%= f.text_field :name %>会員ID</td>
+                <td><%= @customer.id %>会員ID</td>
                 <%= f.label :"#{@customer.id}" %>
                 <td><%= f.text_field :last_name %>名前（姓）</td>
                 <td><%= f.text_field :first_name %>名前（名）</td>
@@ -16,7 +16,8 @@
                 <td><%= f.text_field :address %>住所</td>
                 <td><%= f.text_field :phone_number %>電話番号</td>
                 <td><%= f.text_field :email %>メールアドレス</td>
-                <td><%= f.radio_button :is_active %>会員ステータス</td>
+                <td><%= f.radio_button :is_active, value: true %>有効</td>
+                <td><%= f.radio_button :is_active, value: false %>退会</td>
               </tr>
             </thead>
           </table>
