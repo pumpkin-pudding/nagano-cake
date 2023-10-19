@@ -20,7 +20,8 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
 get 'admin/genres' => 'admin/genres#index'
 post 'admin/genres' => 'admin/genres#create'
-get 'admin/genres/:id/edit' => 'admin/genres#edit', as: 'edit_genre'
 patch '/admin/genres/:id' => 'admin/genres#update', as: 'update_genre'
+get 'admin/genres/:id/edit' => 'admin/genres#edit', as: 'edit_genre'
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
