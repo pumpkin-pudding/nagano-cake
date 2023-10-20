@@ -11,14 +11,13 @@ def create
 end
 
 def edit
-  @genres = Genre.all
   @genre = Genre.find(params[:id])
 end
 
 def update
     @genre = Genre.find(params[:id])
     @genre.update(genre_params)
-    redirect_to genre_path(genre.id)
+    redirect_to '/admin/genres'
 end
 
 private
