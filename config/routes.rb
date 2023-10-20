@@ -27,4 +27,10 @@ get 'admin/genres/:id/edit' => 'admin/genres#edit', as: 'edit_genre'
 
 get 'admin/customers/:id/edit' => 'admin/customers#edit', as: 'edit_customer'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  scope module: :public do
+    resources :items, only: [:show]
+    resources :cart_items, only:[:index, :create]
+  end
+  
 end
