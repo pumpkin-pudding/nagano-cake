@@ -46,7 +46,7 @@
       <td>注文ステータス</td>
 
       <td valign="middle">
-        <%= form_with model: @order ,url:admin_order_path(@order.id),local:ture,method: :patch do |f| %>
+        <%= form_with model: @order ,url:admin_orders_path(@order.id),local:ture,method: :patch do |f| %>
         <%= f.select :status, Order.statuses_i18n.invert%>
         <%= f.submit "更新",class:"btn btn-sm", style: "background-color: #1A120B; color: #E5E5CB;" %>
         <% end %>
