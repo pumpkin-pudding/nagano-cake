@@ -30,9 +30,9 @@ end
     root to: 'homes#top'
     get '/homes/about' => "homes#about", as: "about"
     resources :cart_items, only:[:index, :create]
-    get'/customers/information'=>'customers#information'
+    get'/customers/information'=>'customers#show'
     get'/customers/information/edit'=>'customers/information#edit'
-    patch'/customers/information'=>'customers#information'
+    patch'/customers/information'=>'customers#update'
     get'/customers/check'=>'customers#check'
     patch'/customers/withdraw'=>'customers#withdraw'
     get '/customers/check'=>'customers#check'
