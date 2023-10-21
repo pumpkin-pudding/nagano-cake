@@ -9,13 +9,13 @@
 
   <div class="d-flex justify-content-end mt-3 mb-2">
      <%= link_to new_admin_item_path do %>
-     <i class="fas fa-plus-circle"></i>
+     <button type="button" class="btn btn-light rounded-circle p-0" style="width:2rem;height:2rem;">＋</button>
      <% end %>
   </div>
 
-      <table class="table table-bordered border-dark table-hover align-middle custom-table">
+      <table class="table">
         <thead>
-         <tr align="center">
+         <tr>
            <th>商品ID</th>
            <th>商品名</th>
            <th>税抜価格</th>
@@ -33,7 +33,7 @@
            <td align="center"><% if item.is_active == true %>
               <strong style="color:green;"><%= "販売中" %></strong>
 　　　　      <% else %>
-              <span style="color:dark;"><%= "販売停止中" %></span>
+              <span style="color:gray;"><%= "販売停止中" %></span>
 　　          <% end %>
            </td>
            </tr>
