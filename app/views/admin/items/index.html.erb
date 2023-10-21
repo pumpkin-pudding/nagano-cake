@@ -8,7 +8,7 @@
    </div>
 
   <div class="d-flex justify-content-end mt-3 mb-2">
-     <%= link to name_path do %>
+     <%= link_to new_admin_item_path do %>
      <i class="fas fa-plus-circle"></i>
      <% end %>
   </div>
@@ -41,9 +41,6 @@
         </tbody>
       </table>
 
-          <div class="d-flex justify-content-center mt-4">
-          <%= paginate @items %>
-          </div>
      </div>
       </div>
   </div>

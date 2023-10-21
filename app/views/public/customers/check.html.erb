@@ -7,7 +7,7 @@
     退会する場合は、「退会する」をクリックしてください。</h5>
 
     <div class="d-flex justify-content-center mt-3">
-        <%= link_to "退会しない", customers_information_path, ;class => "btn btn-lg ms-3", style: "background-color: #1A120B; #E5E5CB;" %>
+        <%= link_to "退会しない", customers_information_path, :class => "btn btn-lg ms-3", style: "background-color: #1A120B; #E5E5CB;" %>
         <%= link_to "退会する", customers_withdraw_path, method: :patch, :class => "btn btn-lg btn-danger ms-3", data: { confirm: "本当に退会しますか?" } %>
     </div>
     </div>
