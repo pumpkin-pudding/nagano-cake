@@ -33,7 +33,7 @@
            <td align="center"><% if item.is_active == true %>
               <strong style="color:green;"><%= "販売中" %></strong>
 　　　　      <% else %>
-              <span style="color:red;"><%= "販売停止中" %></span>
+              <span style="color:dark;"><%= "販売停止中" %></span>
 　　          <% end %>
            </td>
            </tr>
@@ -41,6 +41,9 @@
         </tbody>
       </table>
 
+      <div class="d-flex justify-content-center mt-4">
+      <%= paginate @items %>
+      </div>
      </div>
       </div>
   </div>

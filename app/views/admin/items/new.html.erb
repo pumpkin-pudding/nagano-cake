@@ -4,13 +4,19 @@
     </div>
   </div>
 
+   <div class="row d-flex justify-content-center">
+    <% if flash[:item_created_error] %>
+      <span class="text-danger"><%= flash[:item_created_error] %></span>
+    <% end %>
+  </div>
+
     <div class="form d-flex justify-content-center" >
     <%= form_with model: @item, url:admin_items_path, method: :post do |f|  %>
 
       <table class="table mt-5">
          <tbody>
          <tr>
-           <th>商品画像</th>
+           <td>商品画像</td>
            <td><%= f.file_field :image,accept: "image/*" %>
          </tr>
 
@@ -37,9 +43,9 @@
          <tr>
            <td>販売ステータス</td>
            <td>
-            <%= f.radio_button :is_active, :true,class:"form-check-input" %>
+            <%= f.radio_button :is_active, :true,class:"form-check-inline" %>
             <%= f.label :is_active, "販売中",class:"form-check-label" %>
-            <%= f.radio_button :is_active, :false,class:"form-check-input" %>
+            <%= f.radio_button :is_active, :false,class:"form-check-inline" %>
             <%= f.label :is_active, "販売停止中",class:"form-check-label" %>
           </td>
           </tr>
@@ -47,7 +53,7 @@
        </table>
 
    <div class="raw text-center mt-3">
-            <%= f.submit "新規登録" , class:"btn w-25", style: "background-color: #1A120B; color: #E5E5CB;" %>
+            <%= f.submit "新規登録" , class:"btn w-25", style: "background-color: #28a745; color: #E5E5CB;" %>
    </div>
    </div>
             <% end %>
