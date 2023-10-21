@@ -1,23 +1,48 @@
-<h4>会員情報編集</h4>
-
+<div class="container px-5 px-sm-0">
 <h2><%= (@customer.last_name + @customer.first_name) %>さんの会員情報編集</h2>
-
-<%= form_with model: @customer,url: edit_customer_path, method: :patch do |f| %>
+  <div class="row mt-4">
+<%= form_with model: @customer,url: admin_customer_path, method: :patch do |f| %>
 <table class="table table-borderless">
             <thead>
               <tr>
-                <td><%= @customer.id %>会員ID</td>
+                <td>会員ID</td>
+                <td><%= @customer.id %></td>
                 <%= f.label :"#{@customer.id}" %>
-                <td><%= f.text_field :last_name %>名前（姓）</td>
-                <td><%= f.text_field :first_name %>名前（名）</td>
-                <td><%= f.text_field :last_name_kana %>セイ</td>
-                <td><%= f.text_field :first_name_kana %>メイ</td>
-                <td><%= f.text_field :zip_code %>郵便番号</td>
-                <td><%= f.text_field :address %>住所</td>
-                <td><%= f.text_field :phone_number %>電話番号</td>
-                <td><%= f.text_field :email %>メールアドレス</td>
+              </tr>
+              <tr>
+                <td>氏名</td>
+                <td><%= f.text_field :last_name %></td>
+                <td><%= f.text_field :first_name %></td>
+              </tr>
+              <tr>
+                <td>フリガナ</td>
+                <td><%= f.text_field :last_name_kana %></td>
+                <td><%= f.text_field :first_name_kana %></td>
+              </tr>
+              <tr>
+                <td>郵便番号</td>
+                <td><%= f.text_field :zip_code %></td>
+              </tr>
+              <tr>
+                <td>住所</td>
+                <td><%= f.text_field :address %></td>
+              <tr>
+              <tr>
+                <td>電話番号</td>
+                <td><%= f.text_field :phone_number %></td>
+              </tr>
+              <tr>
+                <td>メールアドレス</td>
+                <td><%= f.text_field :email %></td>
+              </tr>
+              <tr>
+                <td>会員ステータス</td>
                 <td><%= f.radio_button :is_active, value: true %>有効</td>
                 <td><%= f.radio_button :is_active, value: false %>退会</td>
+                <tr/>
+                <tr>
+                  <td></td>
+                <td><%= f.submit '変更を保存', class:'btn btn-success' %></td>
               </tr>
             </thead>
           </table>

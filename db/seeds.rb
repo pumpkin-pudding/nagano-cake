@@ -27,3 +27,11 @@ Customer.create(last_name: '田中',
 
 Admin.create(email: '321@gmail.com',
             password: 'abcdefg3')
+
+Item.create(genre_id: '1',
+            name: 'ケーキ',
+            text: 'testケーキ',
+            is_active: 'true',
+            non_taxed_price: '100')
+# item.avatar.attach(io: File.open(Rails.root.join('app/assets/images/logo.jpg')),
+                #   filename: 'logo.jpg')
