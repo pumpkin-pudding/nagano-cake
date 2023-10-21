@@ -1,0 +1,19 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>郵便番号</th>
+            <th>住所</th>
+            <th>宛名</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @address.each do |address| %>
+        <tr>
+            <td><%= address.zip_code %></td>
+            <td><%= address.address </td>
+            <td><%= address.name %></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
