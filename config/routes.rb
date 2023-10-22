@@ -37,7 +37,9 @@ end
     patch'/customers/withdraw'=>'customers#withdraw'
     get '/customers/check'=>'customers#check'
     patch '/customers/withdraw'=>'customers#withdraw'
+    #post '/items' => 'items#create'
     delete '/cart_items' => 'cart_items#all_destroy', as: 'all_destroy'
+    patch 'cart_items' => 'cart_items#create'
     resources :cart_items, only:[:index, :update, :create, :destroy]
     resources :orders, only:[:new, :index, :show]
     post '/orders/confirm'=>'orders#confirm'

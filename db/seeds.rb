@@ -37,3 +37,15 @@ Item.create!(genre_id: '1',
             non_taxed_price: '100',
             image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/logo.jpg")),filename: 'logo.jpg'))
 
+CartItem.create(item_id: '1',
+                customer_id: '1',
+                amount: '5')
+
+Order.create(customer_id: '1',
+            name: 'aaaa',
+            address: '東京都中央区銀座ああああああああああああ',
+            zip_code: '1234567',
+            postage: 'gtgtgtgt',
+            billing_amount: '100000',
+            payment_method: '1',
+            status: '1')

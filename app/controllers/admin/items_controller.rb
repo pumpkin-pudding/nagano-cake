@@ -5,7 +5,11 @@ class Admin::ItemsController < ApplicationController
 
  def show
   @item = Item.find(params[:id])
-  @genre = Genre.find(params[:genre_id])
+  @genre = Genre.find(params[:id])
+  @cart_product = CartItem.new
+ end
+
+ def create
   @cart_product = CartItem.new
  end
 
