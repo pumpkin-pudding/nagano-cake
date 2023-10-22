@@ -1,5 +1,6 @@
 class Public::OrdersController < ApplicationController
  def index
-		 @orders = current_customer.orders
+   @order = Order.where(customer_id: current_customer).reverse_order
+   @orders = @order.all
  end
 end

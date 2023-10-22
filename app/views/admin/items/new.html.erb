@@ -1,53 +1,46 @@
-  <div class="row justify-content-center mb-3">
-    <div class="col-md-4 headline">
-      <h4>商品新規登録</h4>
-    </div>
-  </div>
+ <div class="container">
+  <div class="row">
 
-   <div class="row d-flex justify-content-center">
-    <% if flash[:item_created_error] %>
-      <span class="text-danger"><%= flash[:item_created_error] %></span>
-    <% end %>
-  </div>
+  <h2>商品新規登録</h2><br>
 
-    <div class="form d-flex justify-content-center" >
+    <div class="row justify-content-center">
     <%= form_with model: @item, url:admin_items_path, method: :post do |f|  %>
-
-      <table class="table mt-5">
+      <table class="table table-borderless">
          <tbody>
          <tr>
-           <td>商品画像</td>
+           <td><%= f.label :商品画像 %></td>
            <td><%= f.file_field :image,accept: "image/*" %>
          </tr>
 
          <tr>
-           <td>商品名</td>
+           <td><%= f.label :商品名 %></td>
            <td><%= f.text_field :name, autofocus: true, placeholder:"商品名",class:"form-control" %></td>
          </tr>
 
          <tr>
-           <td>商品説明</td>
+           <td><%= f.label :商品説明 %></td>
            <td><%= f.text_area :description, placeholder:"ここに説明文を記述します",rows:"5",class:"form-control"%></td>
          </tr>
 
          <tr>
-           <td>ジャンル</td>
+           <td><%= f.label :ジャンル %></td>
            <td><%= f.collection_select :genre_id, Genre.all, :id, :name,include_blank: "選択してください--"%></td>
+
          </tr>
 
          <tr>
-           <td>税抜価格</td>
-           <td><%= f.text_field :non_taxed_price,  pattern:"^[1-9][0-9]*$", placeholder:"1000(半角数字を入力)",class:"form-control" %></td>
+           <td><%= f.label :税抜価格 %></td>
+           <td><%= f.text_field :price, placeholder: "1000", class: "form-control" %>円</td>
          </tr>
 
          <tr>
-           <td>販売ステータス</td>
+           <td><%= f.label :販売ステータス %></td>
            <td>
-            <%= f.radio_button :is_active, :true,class:"form-check-inline" %>
-            <%= f.label :is_active, "販売中",class:"form-check-label" %>
-            <%= f.radio_button :is_active, :false,class:"form-check-inline" %>
-            <%= f.label :is_active, "販売停止中",class:"form-check-label" %>
-          </td>
+              <%= f.radio_button :is_active, true %>
+              <%= f.label :is_active, "販売中", value: true %>
+              <%= f.radio_button :is_active, false, class:"ml-3" %>
+              <%= f.label :is_active, "販売停止中", value: false %>
+            </td>
           </tr>
         </tbody>
        </table>
