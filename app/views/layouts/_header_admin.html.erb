@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="/"><%= image_tag('cake.png', size: '100×100') %></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+          <li>
+            <%= link_to admin_items_path,class: 'nav-link text-dark' do %>
+              商品一覧
+            <% end %>
+          </li>
+          <li>
+            <%= link_to admin_customers_path,class: 'nav-link text-dark' do %>
+              会員一覧
+            <% end %>
+          </li>
+          <li>
+            <%= link_to admin_path,class: 'nav-link text-dark' do %>
+              注文履歴一覧
+            <% end %>
+          </li>
+          <li>
+            <%= link_to admin_genres_path,class: 'nav-link text-dark' do %>
+              ジャンル一覧
+            <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text-dark' do %>
+              ログアウト
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
