@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
   # root to: 'homes#top'
-  get '/homes/about' => "homes#about", as: "about"
 # 顧客用
 # URL /customers/sign_in ...
 devise_for :customers,skip: [:passwords], controllers: {
@@ -29,6 +28,7 @@ end
 
   scope module: :public do
     root to: 'homes#top'
+    get '/homes/about' => 'homes#about'
     resources :items, only: [:index, :show]
     resources :cart_items, only:[:index, :create]
     get'/customers/information'=>'customers#information'
