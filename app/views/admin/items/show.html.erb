@@ -7,11 +7,17 @@
         <div class="col-md-6">
             <table class='table'>
                 <tr>
-                    <td><p>商品名 <%= @item.name %></p></td>
-                    <td><p>商品説明 <%= @item.text %></p></td>
-                    <td><p>ジャンル <%= @item.genre_id %></p></td>
-                    <td><p>税抜き価格 <%= @item.non_taxed_price %></p></td>
-                    <td><p>販売ステータス</p></td>
+                    <td>商品名 <%= @item.name %></td>
+                    <td>商品説明 <%= @item.text %></td>
+                    <td>ジャンル <%= @item.genre_id %></td>
+                    <td>税込価格(税抜価格) <%= (@item.non_taxed_price * 1.1).to_i %>(<%= @item.non_taxed_price %>)円</td>
+                    <td>販売ステータス 
+                        <% if @item.is_active == true %>
+				        販売中
+				        <% else %>
+	                    売切れ
+				        <% end %>
+                    </td>
                 </tr>
             </table>
         </div>

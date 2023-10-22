@@ -18,10 +18,10 @@
   <%= f.text_area :non_taxed_price %>
   
   <h4>販売ステータス</h4>
-  <%= f.radio_button :is_active, Item.is_actives.key(1), :checked => params[:is_active] == "販売中" %>
-  <%= f.label :is_active, Item.is_actives_i18n[:sale] %>
-  <%= f.radio_button :is_active, Item.is_actives.key(0), :checked => params[:is_active] == "販売停止中" %>
-  <%= f.label :is_active, Item.is_actives_i18n[:stop] %>
+  <%= f.radio_button :is_active, true %>
+  <%= f.label :is_active, "販売中" %>
+  <%= f.radio_button :is_active, false %>
+  <%= f.label :is_active, "販売停止中" %>
   
   <%= f.submit '変更を保存' %>
   
