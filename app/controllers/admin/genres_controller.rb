@@ -20,9 +20,14 @@ def update
     redirect_to '/admin/genres'
 end
 
-private
-    def genre_params
+  def show
+    @genres = Genre.all
+    @genre = Genre.find(params[:id])
+  end
+
+  private
+  def genre_params
     params.require(:genre).permit(:name)
-end
+  end
 
 end

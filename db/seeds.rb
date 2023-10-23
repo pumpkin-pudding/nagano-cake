@@ -27,3 +27,42 @@ Customer.create(last_name: '田中',
 
 Admin.create(email: '321@gmail.com',
             password: 'abcdefg3')
+
+Genre.create(
+  name: "ケーキ",
+  )
+
+Genre.create(
+  name: "プリン",
+  )
+  
+Genre.create(
+  name: "焼き菓子",
+  )
+  
+Genre.create(
+  name: "キャンディ",
+  )
+
+Item.create(
+  name: "ショートケーキ",
+  text: "イチゴが乗ったショートケーキです",
+  non_taxed_price: 500,
+  genre_id: 1,  # ジャンルを指定
+  is_active: true
+)
+
+Item.create(
+  name: "かぼちゃプリン",
+  text: "かぼちゃ味のプリンです",
+  non_taxed_price: 400,
+  genre_id: 2,  # ジャンルを指定
+  is_active: true
+)
+  
+Address.create(
+  customer_id: 1,
+  zip_code: '1234567',
+  adress: 'テスト住所',
+  name: '田中愛子'
+)
