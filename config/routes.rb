@@ -28,7 +28,7 @@ end
 
   scope module: :public do
     root to: 'homes#top'
-    get '/homes/about' => "homes#about", as: "about"
+    get '/homes/about' => "homes#about"
     resources :items, only: [:index, :show]
     get'/customers/information'=>'customers#show'
     get'/customers/information/edit'=>'customers#edit'
