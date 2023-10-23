@@ -13,7 +13,7 @@
          <tbody>
          <tr>
            <td><%= f.label :商品画像 %></td>
-           <td><%= f.file_field :image,accept: "image/*" %>
+           <td><%= f.file_field :image,accept: "image/*" %></td>
          </tr>
 
          <tr>
@@ -28,13 +28,24 @@
 
          <tr>
            <td><%= f.label :ジャンル %></td>
-           <td><%= f.collection_select :genre_id, Genre.all, :id, :name,include_blank: "-- 選択してください--" %></td>
+           <td>
+             <div class="dropdown-list-width">
+               <%= f.collection_select :genre_id, Genre.all, :id, :name,include_blank: "-- 選択してください--" %>
+             </div>
+          </td>
+           </tr>
 
-         </tr>
 
          <tr>
            <td><%= f.label :税抜価格 %></td>
-           <td><%= f.text_field :price_without_tax, placeholder: "1000", class: "form-control"%>円</td>
+           <td>
+             <div class="input-group">
+               <%= f.text_field :price_without_tax, placeholder: "1000", class: "form-control" %>
+         　     <div class="input-group-append">
+                 <span class="input-group-text">円</span>
+               </div>
+             </div>
+           </td>
          </tr>
 
          <tr>
@@ -54,6 +65,6 @@
    </div>
    </div>
             <% end %>
-
+</form>
   </div>
  </div>

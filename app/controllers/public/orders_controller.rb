@@ -48,5 +48,7 @@ class Public::OrdersController < ApplicationController
    else
     @order = Order.new
    end
+
+
  end
 end
