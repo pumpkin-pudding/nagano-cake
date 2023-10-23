@@ -28,7 +28,37 @@ Customer.create(last_name: '田中',
 Admin.create(email: '321@gmail.com',
             password: 'abcdefg3')
 
-Genre.create(name: 'ケーキ')
+Genre.create(
+  name: "ケーキ",
+  )
+
+Genre.create(
+  name: "プリン",
+  )
+
+Genre.create(
+  name: "焼き菓子",
+  )
+
+Genre.create(
+  name: "キャンディ",
+  )
+
+Item.create(
+  name: "ショートケーキ",
+  text: "イチゴが乗ったショートケーキです",
+  non_taxed_price: 500,
+  genre_id: 1,
+  is_active: true
+)
+
+Item.create(
+  name: "かぼちゃプリン",
+  text: "かぼちゃ味のプリンです",
+  non_taxed_price: 400,
+  genre_id: 2,
+  is_active: true
+)
 
 Item.create!(genre_id: '1',
             name: 'ケーキ',
@@ -37,15 +67,9 @@ Item.create!(genre_id: '1',
             non_taxed_price: '100',
             image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/logo.jpg")),filename: 'logo.jpg'))
 
-CartItem.create(item_id: '1',
-                customer_id: '1',
-                amount: '5')
-
-Order.create(customer_id: '1',
-            name: 'aaaa',
-            address: '東京都中央区銀座ああああああああああああ',
-            zip_code: '1234567',
-            postage: 'gtgtgtgt',
-            billing_amount: '100000',
-            payment_method: '1',
-            status: '1')
+Address.create(
+  customer_id: 1,
+  zip_code: '1234567',
+  adress: 'テスト住所',
+  name: '田中愛子'
+)
