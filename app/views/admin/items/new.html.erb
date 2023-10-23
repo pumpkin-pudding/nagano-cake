@@ -1,7 +1,8 @@
-<div class= "container">
-  <div class= "row px-5">
- <div class=" ml-5">
-      <h4 class= " px-3 mb-2 bg-secondary text-dark font-weight-light">商品新規登録</h4><br>
+<div class="container">
+  <div class="col-md-8 mx-auto mt-5">
+   <div>
+<div class="row mb-3">
+      <h4 class= "px-3 mb-3 bg-secondary text-dark font-weight-light">商品新規登録</h4><br>
   </div>
   </div>
 </div>
@@ -27,7 +28,7 @@
 
          <tr>
            <td><%= f.label :ジャンル %></td>
-           <td><%= f.collection_select :genre_id, Genre.all, :id, :name,include_blank: "-- 選択してください--"%></td>
+           <td><%= f.collection_select :genre_id, Genre.all, :id, :name,include_blank: "-- 選択してください--" %></td>
 
          </tr>
 
