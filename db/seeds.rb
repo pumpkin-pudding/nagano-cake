@@ -48,7 +48,7 @@ Item.create(
   name: "ショートケーキ",
   text: "イチゴが乗ったショートケーキです",
   non_taxed_price: 500,
-  genre_id: 1,  # ジャンルを指定
+  genre_id: 1,  
   is_active: true
 )
 
@@ -56,7 +56,7 @@ Item.create(
   name: "かぼちゃプリン",
   text: "かぼちゃ味のプリンです",
   non_taxed_price: 400,
-  genre_id: 2,  # ジャンルを指定
+  genre_id: 2,  
   is_active: true
 )
   
