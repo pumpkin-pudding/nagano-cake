@@ -25,6 +25,21 @@ class Public::AddressesController < ApplicationController
     redirect_to addresses_path
   end 
   
+  def edit
+    @addresses = Address.find(params[:id])
+  end
+  
+  def update
+    @address = Address.find(params[:id])
+    if @address.update(address_params)
+       flash[:success] = "配送先の変更内容を保存しました。"
+       redirect_to addresses_path
+    else
+       flash[:danger] = "配送先の変更内容に不備があります。"
+       redirect_back(fallback_location: root_path)
+    end
+  end
+  
   private
   
   def address_params
