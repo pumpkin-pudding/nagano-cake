@@ -35,11 +35,11 @@ Genre.create(
 Genre.create(
   name: "プリン",
   )
-  
+
 Genre.create(
   name: "焼き菓子",
   )
-  
+
 Genre.create(
   name: "キャンディ",
   )
@@ -48,7 +48,7 @@ Item.create(
   name: "ショートケーキ",
   text: "イチゴが乗ったショートケーキです",
   non_taxed_price: 500,
-  genre_id: 1,  
+  genre_id: 1,
   is_active: true
 )
 
@@ -56,10 +56,17 @@ Item.create(
   name: "かぼちゃプリン",
   text: "かぼちゃ味のプリンです",
   non_taxed_price: 400,
-  genre_id: 2,  
+  genre_id: 2,
   is_active: true
 )
-  
+
+Item.create!(genre_id: '1',
+            name: 'ケーキ',
+            text: 'testケーキ',
+            is_active: 'true',
+            non_taxed_price: '100',
+            image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/logo.jpg")),filename: 'logo.jpg'))
+
 Address.create(
   customer_id: 1,
   zip_code: '1234567',

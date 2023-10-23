@@ -28,18 +28,19 @@ end
 
   scope module: :public do
     root to: 'homes#top'
-    get '/homes/about' => 'homes#about'
+    get '/homes/about' => "homes#about"
     resources :items, only: [:index, :show]
-    resources :cart_items, only:[:index, :create]
-    get'/customers/information'=>'customers#information'
-    get'/customers/information/edit'=>'customers/information#edit'
-    patch'/customers/information'=>'customers#information'
+    get'/customers/information'=>'customers#show'
+    get'/customers/information/edit'=>'customers#edit'
+    patch'/customers/information'=>'customers#update'
     get'/customers/check'=>'customers#check'
     patch'/customers/withdraw'=>'customers#withdraw'
     get '/customers/check'=>'customers#check'
     patch '/customers/withdraw'=>'customers#withdraw'
+    #post '/items' => 'items#create'
+    delete '/cart_items' => 'cart_items#all_destroy', as: 'all_destroy'
+    patch 'cart_items' => 'cart_items#create'
     resources :cart_items, only:[:index, :update, :create, :destroy]
-    delete '/cart_items' => 'cart_items#all_destroy'
     resources :orders, only:[:new, :index, :show]
     post '/orders/confirm'=>'orders#confirm'
     get '/orders/thanks'=>'orders#thanks'
