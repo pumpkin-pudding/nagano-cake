@@ -10,8 +10,7 @@ class Public::OrdersController < ApplicationController
     @addresses = current_customer.addresses
   end
   
-  def confirm
-  end
+
 
  
  def thanks
