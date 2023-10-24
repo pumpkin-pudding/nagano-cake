@@ -22,5 +22,9 @@
       </div>
     </header>
     <%= yield %>
+    <div>
+      <%= flash[:success] %>
+      <%= flash[:danger] %>
+    </div>
   </body>
 </html>

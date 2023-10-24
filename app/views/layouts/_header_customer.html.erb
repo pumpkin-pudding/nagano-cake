@@ -1,9 +1,12 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-      <a class="navbar-brand" href="/"><%= image_tag('cake.png', size: '100×100') %></a>
+      <a class="navbar-brand" href="/"><%= image_tag('cake.png', size: '20×20') %></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+      <span class="welcome message for loged-in customer">
+        ようこそ、<%= current_customer.first_name %>さん！
+      </span>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
           <li>
