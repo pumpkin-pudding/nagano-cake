@@ -29,21 +29,19 @@
          <tr>
            <td><%= f.label :ジャンル %></td>
            <td>
-             <div class="dropdown-list-width:200px">
-               <%= f.collection_select :genre_id, Genre.all, :id, :name,include_blank: "-- 選択してください--" %>
+             <div class="form-group custom-dropdown">
+               <%= f.select :genre_id, [['ケーキ', 'ケーキ'], ['プリン', 'プリン'], ['焼き菓子', '焼き菓子'], ['キャンディ', 'キャンディ']], include_blank: "-- 選択してください--", style: "width: 250px;" %>
              </div>
-          </td>
-           </tr>
+           </td>
+         </tr>
 
 
          <tr>
            <td><%= f.label :税抜価格 %></td>
            <td>
              <div class="input-group">
-               <%= f.text_field :price_without_tax, placeholder: "1000", class: "form-control" %>
-         　     <div class="input-group-append">
-                 <span class="input-group-text">円</span>
-               </div>
+               <%= f.text_field :price, placeholder: "1000", class: "form-control" %><span class="d-block">円</span>
+　　　　　   </div>
              </div>
            </td>
          </tr>
@@ -62,9 +60,9 @@
 
    <div class="raw text-center mt-3">
             <%= f.submit "新規登録" , class:"btn w-25", style: "background-color: #28a745; color: #E5E5CB;" %>
+
    </div>
    </div>
             <% end %>
-</form>
   </div>
  </div>
