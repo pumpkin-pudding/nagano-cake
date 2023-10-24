@@ -18,12 +18,12 @@
 
          <tr>
            <td><%= f.label :商品名 %></td>
-           <td><%= f.text_field :name, autofocus: true, placeholder:"商品名",class:"form-control" %></td>
+           <td><%= f.text_field :name, autofocus: true, placeholder:"商品名",class:"form-control" , style: "width: 300px;" %></td>
          </tr>
 
          <tr>
            <td><%= f.label :商品説明 %></td>
-           <td><%= f.text_area :description, placeholder:"ここに説明文を記述します",rows:"5",class:"form-control"%></td>
+           <td><%= f.text_area :description, placeholder:"ここに説明文を記述します",rows:"5",class:"form-control" , style: "width: 300px;" %></td>
          </tr>
 
          <tr>
@@ -39,8 +39,8 @@
          <tr>
            <td><%= f.label :税抜価格 %></td>
            <td>
-             <div class="input-group">
-               <%= f.text_field :price, placeholder: "1000", class: "form-control" %><span class="d-block">円</span>
+             <div class="form-group">
+               <div style="display: inline-block;"><%= f.text_field :price, placeholder: "1000", class: "form-control" , style: "width: 300px;" %></div><span style="display: inline;">円</span>
 　　　　　   </div>
              </div>
            </td>

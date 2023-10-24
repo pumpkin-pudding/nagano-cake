@@ -11,7 +11,8 @@ class Admin::ItemsController < ApplicationController
     @item = Item.new
     @genres = Genre.all
     @genre = Genre.new
-
   end
 
 end
+
+
