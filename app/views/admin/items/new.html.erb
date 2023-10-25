@@ -23,14 +23,14 @@
 
          <tr>
            <td><%= f.label :商品説明 %></td>
-           <td><%= f.text_area :description, placeholder:"ここに説明文を記述します",rows:"5",class:"form-control" , style: "width: 300px;" %></td>
+           <td><%= f.text_area :text, placeholder:"ここに説明文を記述します",rows:"5",class:"form-control" , style: "width: 300px;" %></td>
          </tr>
 
          <tr>
            <td><%= f.label :ジャンル %></td>
            <td>
              <div class="form-group custom-dropdown">
-               <%= f.select :genre_id, [['ケーキ', 'ケーキ'], ['プリン', 'プリン'], ['焼き菓子', '焼き菓子'], ['キャンディ', 'キャンディ']], include_blank: "-- 選択してください--", style: "width: 250px;" %>
+               <%= f.select :genre_id, options_for_select(@genres.map { |genre| [genre.name, genre.id] }), include_blank: "-- 選択してください--", style: "width: 250px;" %>
              </div>
            </td>
          </tr>
@@ -40,7 +40,7 @@
            <td><%= f.label :税抜価格 %></td>
            <td>
              <div class="form-group">
-               <div style="display: inline-block;"><%= f.text_field :price, placeholder: "1000", class: "form-control" , style: "width: 300px;" %></div><span style="display: inline;">円</span>
+               <div style="display: inline-block;"><%= f.text_field :non_taxed_price, placeholder: "1000", class: "form-control" , style: "width: 300px;" %></div><span style="display: inline;">円</span>
 　　　　　   </div>
              </div>
            </td>

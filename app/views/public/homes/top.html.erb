@@ -10,10 +10,10 @@
     <% @items.each do |item| %>
  　　<%= link_to item_path(item.id) do %>
     <div class="thumbnail item-thumbnail col-xs-2">
-     <%= image_tag @item.get_image %>
+     <%= image_tag item.image, size:'300x200' %>
      <div class="item detail">
       <p><%= item.name %></p>
-      <p><%= "#{product.non_taxed_price}円" %></p>
+      <p><%= "#{item.non_taxed_price}円" %></p>
       <% if item.is_active == false %>
       <p class="item-sales-status">売り切れ</p>
       <% end %>

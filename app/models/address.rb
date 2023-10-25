@@ -1,7 +1,7 @@
 class Address < ApplicationRecord
  belongs_to :customer
  
-  def zip_code_and_adress_and_name
-    "〒#{self.zip_code}  #{self.adress}  #{self.name}"
+  def zip_code_and_address_and_name
+    "〒#{self.zip_code}  #{self.address}  #{self.name}"
   end
 end
