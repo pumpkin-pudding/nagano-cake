@@ -5,6 +5,14 @@ class Public::OrdersController < ApplicationController
   @order_details = OrderDtail.where(order_id: @order.id)
  end 
  
+  def new
+    @order = Order.new
+    @addresses = current_customer.addresses
+  end
+  
+
+
+ 
  def thanks
  end
   def index
