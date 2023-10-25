@@ -1,7 +1,25 @@
 class Public::OrdersController < ApplicationController
+
  def index
    @order = Order.where(customer_id: current_customer).reverse_order
    @orders = @order.all
+
+ 
+ def show
+  @order = Order.find(params[:id])
+  @order_details = OrderDtail.where(order_id: @order.id)
+ end 
+ 
+  def new
+    @order = Order.new
+    @addresses = current_customer.addresses
+  end
+  
+
+
+ 
+ def thanks
+
  end
 
  def confirm
