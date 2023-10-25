@@ -2,7 +2,7 @@
     <div class="row item-detail">
         <div class="col-md-4">
             <h2>商品詳細</h2>
-            <%= image_tag @item.get_image %>
+            <%= image_tag @item.image, size:'300x200' %>
         </div>
         <div class="col-md-6">
             <table class='table'>
@@ -26,3 +26,4 @@
         <%= link_to '編集する', edit_admin_item_path, class: "btn btn-success btn-sm btn-block mb-3" %>
     </div>
 </div>
+
