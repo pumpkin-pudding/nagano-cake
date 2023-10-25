@@ -5,7 +5,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <span class="welcome message for loged-in customer">
-        ようこそ、<%= current_customer.first_name %>さん！
+        ようこそ、<%= current_customer.last_name %>さん！
       </span>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
@@ -20,7 +20,7 @@
             <% end %>
           </li>
           <li>
-            <%= link_to cart_item_path,class: 'nav-link text-dark' do %>
+            <%= link_to cart_items_path,class: 'nav-link text-dark' do %>
               カート
             <% end %>
           </li>

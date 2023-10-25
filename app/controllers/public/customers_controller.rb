@@ -3,26 +3,31 @@ class Public::CustomersController < ApplicationController
   end
 
   def show
-    current_customer = Customer.find(1)
     @customer = current_customer
   end
 
   def  edit
-    current_customer = Customer.find(1)
     @customer = current_customer
   end
 
   def update
-    current_customer = Customer.find(1)
     @customer = current_customer
     @customer.update(customer_params)
     redirect_to customers_information_path
   end
 
   def check
-    current_customer = Customer.find(1)
     @customer = current_customer
   end
+  
+  def withdraw
+    @customer = current_customer
+    @customer.is_active = false
+    if @customer.save
+      reset_session
+      redirect_to root_path
+    end
+  end 
 
 
 private
