@@ -52,6 +52,11 @@ class Public::OrdersController < ApplicationController
    end
 
 
+
+  def thanks
+  end
+
+
  end
    private
 

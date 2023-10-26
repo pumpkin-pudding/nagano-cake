@@ -78,7 +78,7 @@
 
 <div class="row mt-5">
  <div class="col text-center">
-  <%= form_with model: @order, url: orders_path, method: :post do |f| %>
+  <%= form_with model: @order, url: orders_thanks_path, method: :post do |f| %>
    <%= f.hidden_field :name %>
    <%= f.hidden_field :zip_code %>
    <%= f.hidden_field :address %>
