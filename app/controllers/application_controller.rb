@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   
   private
   def admin_url
-    request.fullpath.starts_with?('/admin')
+    request.fullpath.starts_with?('/admin', )
   end
   
   def after_sign_out_path_for(resource_or_scope)

@@ -21,7 +21,7 @@
 
   <div class="col-md-9">
     <h3><strong><%= @genre.name %>一覧</strong></h3>
-    <div class="d-flex flex-row">
+    <div class="d-flex flex-wrap">
       <% @genre.items.each do |item| %>
         <div class="col-3 mt-3">
           <%= link_to item_path(item), class: "text-dark" do %>

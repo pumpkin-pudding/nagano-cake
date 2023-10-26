@@ -7,6 +7,8 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
          has_many :addresses
+         validates :email, presence: true
+         validates :password, presence: true
          
   def active_for_authentication?
     super && self.is_active?
