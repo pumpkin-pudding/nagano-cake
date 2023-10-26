@@ -5,8 +5,8 @@
 <div class="container">
   <div class="row justify-content-center order-new-title mt-5 mx-auto">
 </div>
-    <div class="col-md-4 headline">
-      <h4>注文情報確認</h4>
+    <div class="col-md-3 headline">
+      <h4 class= "px-4 mb-3 bg-secondary text-dark font-weight-light">注文情報確認</h4>
     </div>
 </div>
 
@@ -14,11 +14,11 @@
     <div class="col-md-8">
     <table class="table table-inverse table-bordered custom-table", style="border-color: #3C2A21;">
       <thead>
-        <tr align="center">
-          <th scope="col" style="width: 40%;">商品名</th>
-          <th scope="col" style="width: 20%;">単価(税込)</th>
-          <th scope="col" style="width: 20%;">数量</th>
-          <th scope="col" style="width: 20%;">小計</th>
+
+          <th style="background-color: #F2F2F2;">商品名</th>
+          <th style="background-color: #F2F2F2;">単価(税込)</th>
+          <th style="background-color: #F2F2F2;">数量</th>
+          <th style="background-color: #F2F2F2;">小計</th>
         </tr>
       </thead>
       <tbody>
@@ -35,19 +35,21 @@
       </tbody>
     </table>
   </div>
-  <div class="col-md-2 indexx-amount">
-  <table class="table table-inverse table-bordered", style="border-color: #3C2A21;">
+  <div class="row">
+  　<div class="col-md-10"></div>
+  　<div class="col-md-2 index-amount">
+  　　<table class="table table-inverse table-bordered", style="border-color: #3C2A21;">
       <tbody>
        <tr>
-         <th style="backgroud-color: rgba(60, 42, 33, 0.5);">送料</th>
+         <th style="background-color: #F2F2F2">送料</th>
          <td class="text-center"><%= @order.postage %>円</td>
        </tr>
        <tr>
-         <th style="backgroud-color: rgba(60, 42, 33, 0.5);">商品合計</th>
+         <th style="background-color: #F2F2F2;">商品合計</th>
          <td class="text-center"><%= @order_total_amount.to_s(:delimited) %>円</td>
        </tr>
        <tr>
-         <th style="backgroud-color: rgba(60, 42, 33, 0.5);">請求金額</th>
+         <th style="background-color: #F2F2F2;">請求金額</th>
          <td class="text-center"><%= @order_total_amount.to_s(:delimited) %>円</td>
        </tr>
       </tbody>
@@ -60,7 +62,7 @@
     <h5><strong>支払方法</strong></h5>
   </div>
   <div class="col-md-8">
-    <%= @order.payment_method_i18n %>
+    <%= @order.payment_method %>
   </div>
 </div>
 
@@ -80,7 +82,7 @@
    <%= f.hidden_field :name %>
    <%= f.hidden_field :zip_code %>
    <%= f.hidden_field :address %>
-  <%= f.submit '注文を確定する', class: 'btn', style: "background-color: #1A120B; color: #E5E5CB;", data: { confirm: "注文確定をします。よろしいですか？" } %>
+  <%= f.submit '注文を確定する', class: 'btn', style: "background-color: #28a745; color: #E5E5CB;", data: { confirm: "注文確定をします。よろしいですか？" } %>
   <% end %>
  </div>
 </div>
