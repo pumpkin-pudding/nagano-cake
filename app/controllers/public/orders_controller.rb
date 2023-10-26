@@ -51,7 +51,7 @@ class Public::OrdersController < ApplicationController
     @order = Order.new
    end
 
-
+  
 
   def thanks
   end
