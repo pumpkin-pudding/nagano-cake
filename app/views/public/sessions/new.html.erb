@@ -1,15 +1,24 @@
 <div class="container">
-  <%= render "public/shared/error_messages", resource: resource %>
   <div class="row my-3">
     <div class="col-sm-8 py-2 offset-sm-2">
       <h2>ログイン</h2>
     </div>
   </div>
+  
   <div class="row my-3">
     <div class="col-sm-8 offset-sm-2">
       会員の方はこちらからログイン
     </div>
   </div>
+  
+  <% if flash[:notice].present? %>
+    <div class="row my-3">
+      <div class="col-12 text-center">
+        <%= render "public/shared/error_messages", resource: resource %>
+        <p class="alert alert-warning"><%= flash[:notice] %></p>
+      </div>
+    </div>
+  <% end %>
   
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="row my-3">
@@ -29,6 +38,7 @@
       </div>
     </div>
     <div class="row my-3">
+          <%= render "devise/shared/error_messages", resource: resource %>
       <div class="col-3 offset-md-5">
         <%= f.submit "ログイン", class:"btn btn-primary px-4 mt-3 mb-5" %>
       </div>
