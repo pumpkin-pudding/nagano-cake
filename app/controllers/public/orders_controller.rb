@@ -53,6 +53,15 @@ class Public::OrdersController < ApplicationController
 
 
  end
+ 
+ def show
+      @order = Order.find(params[:id])
+      @order_details= OrderDetail.where(order_id: @order.id)
+ end
+ 
+ def thanks
+ end 
+ 
    private
 
     def order_params
