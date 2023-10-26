@@ -4,15 +4,15 @@ class Public::OrdersController < ApplicationController
    @orders = @order.all
  end
 
- def confirm
-   if params[:order]
-   @order = Order.new(order_params)
-   @order.customer_id = current_customer.id
-   @cart_items = current_customer.cart_items
-   @total_amount = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
-   @order.postage = 800
-   @oreder_total_amount = @total_amount + @order.postage.to_i
+def confirm
+  @order = Order.new(order_params)
+  @order.customer_id = current_customer.id
+  @cart_items = current_customer.cart_items
+  @total_amount = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
+  @order.postage = 800
+  @order_total_amount = @total_amount + @order.postage.to_i
 
+if params[:order]
    if params[:order][:select_address] == "0"
       @order.zip_code = current_customer.zip_code
       @order.address = current_customer.address
@@ -38,17 +38,24 @@ class Public::OrdersController < ApplicationController
       session[:order] = @order.attributes
    end
 
-   if session[:order]
+  if session[:order]
     @order = Order.new(session[:order])
     @cart_items = current_customer.cart_items
     @total_amount = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
     @order.postage = 800
     @order_total_amount = @total_amount + @order.postage.to_i
     @address = "〒" + @order.zip_code + @order.address
-   else
+  else
     @order = Order.new
-   end
+  end
 
 
  end
+ 
+ 
+   private
+
+  def order_params
+    params.require(:order).permit(:name, :address, :zip_code, :postage, :billing_amount, :payment_method, :status)
+  end
 end
