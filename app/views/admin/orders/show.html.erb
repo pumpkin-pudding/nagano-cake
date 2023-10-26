@@ -1,13 +1,13 @@
 <div class="container">
-  <div class="col-md-8 mx-auto mt-5">
+  <div class="col-md-12 mx-auto mt-5">
    <div>
 <div class="row mb-3">
-   <h4 class= "px-3 mb-3 bg-secondary text-dark font-weight-light">注文詳細</h4>
+   <h4>注文詳細</h4>
  </div>
 </div>
 
 
-  <div class="col-md-6 d-flex justify-content-center mt-5" style="background-color: rgba(213, 206, 163,0.4);">
+  <div class="col-md-10 d-flex justify-content-center mt-5">
   <table class="table table-borderless">
     <thead>
       <tr>
@@ -20,8 +20,8 @@
     <tr>
       <td>購入者</td>
       <td>
-        <%= link_to admin_costomer_path(@order.customer.id),class:"admin_link" do%>
-          <%= @order.customer.ful_name %>
+        <%= link_to admin_customer_path(@order.customer.id),class:"admin_link" do %>
+      <%= @order.customer.last_name %><%= @order.customer.first_name %>
         <% end %>
     </tr>
     <tr>
@@ -32,23 +32,26 @@
       <td>配送先</td>
       <td>
         〒<%= @order.zip_code.to_s.insert(3, "-") %>
-        <%= @order.adress %></br>
+        <%= @order.address %></br>
         <%= @order.name %>
       </td>
 
     <tr>
       <td>支払方法</td>
-      <td><%= @order.payment_method_i18n %></td>
+      <td><%= @order.payment_method %></td>
     </tr>
 
     <tr class="order_status">
       <td>注文ステータス</td>
 
       <td valign="middle">
-        <%= form_with model: @order ,url:admin_orders_path(@order.id),local:ture,method: :patch do |f| %>
-        <%= f.select :status, Order.statuses_i18n.invert%>
-        <%= f.submit "更新",class:"btn btn-sm", style: "background-color: #1A120B; color: #E5E5CB;" %>
+        <%= form_with model: @order, url: admin_order_path, local:true, method: :patch do |f| %>
+          <%#= f.select :status, Order.statuses.keys.map {|k| [I18n.t("enums.order.status.#{k}"), k]} %>
+          <%= f.select :status, Order.statuses.keys.map {|k| [k, k]} %>
+          <%= f.submit "更新", class:"btn btn-success" %>
         <% end %>
+      </td>
+
       </td>
     </tr>
   </tbody>
@@ -69,16 +72,16 @@
         </tr>
       </thead>
       <tbody class="production_status">
-         <% @oreder_items.each do |oreder_item| %>
+         <% @order_items.each do |order_item| %>
          <tr valign="middle">
-         <td align="center"><%= oreder_item.item.with_tax_price.to_s(:delimited) %>円</td>
+         <td align="center"><%= order_item.item.with_tax_price.to_s(:delimited) %>円</td>
          <td align="center"><%= order_item.amount %></td>
          <td align="center"><%= order_item.price.to_s(:delimited) %>円</td>
 
          <td align="center">
-         <%=form_with model: oreder_item ,url:admin_order_item_path(order_item), local:true, method: :patch do |f| %>
-         <%= f.select :production_status,OrderItem.production_status_i18n.invert %>
-         <%= f.submit "更新",class:"btn btn-sm", style: "background-color: #1A120B; color: #E5E5CB;" %>
+         <%=form_with model: order_item ,url:admin_order_item_path(order_item), local:true, method: :patch do |f| %>
+         <%= f.select :order_status,OrderItem.order_status %>
+         <%= f.submit "更新",class:"btn btn-sm" %>
          <% end %>
          </td>
 
@@ -89,7 +92,7 @@
     </div>
 
   <div class="col-md-3">
-    <table class="table" style="background-color: rgba(213, 206, 163,0.4);">
+    <table class="table">
       <tbody>
          <tr>
            <td><strong>商品合計</strong></td>

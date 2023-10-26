@@ -1,10 +1,10 @@
 class Public::AddressesController < ApplicationController
-    
+
   def index
     @addresses = current_customer.addresses
     @address_new = Address.new
-  end 
-  
+  end
+
 def create
   @address_new = Address.new(address_params)
   @addresses = Address.all
@@ -17,18 +17,18 @@ def create
     redirect_to addresses_path
   end
 end
-  
+
   def destroy
     address = Address.find(params[:id])
     address.destroy
     flash[:success] = '削除しました'
     redirect_to addresses_path
-  end 
-  
+  end
+
   def edit
     @addresses = Address.find(params[:id])
   end
-  
+
   def update
     @address = Address.find(params[:id])
     if @address.update(address_params)
@@ -39,11 +39,11 @@ end
        redirect_back(fallback_location: root_path)
     end
   end
-  
+
   private
-  
+
   def address_params
     params.require(:address).permit(:address, :zip_code, :name)
-  end 
-     
+  end
+
 end
