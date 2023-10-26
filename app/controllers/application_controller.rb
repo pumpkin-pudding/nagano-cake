@@ -9,7 +9,6 @@ class ApplicationController < ActionController::Base
         root_path
     end 
   end 
-    
   
   def after_sign_out_path_for(resource)
     case resource
@@ -26,4 +25,6 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys:[:email, :phone_number, :zip_code, :address, :first_name_kana, :last_name_kana, :first_name, :last_name])
     devise_parameter_sanitizer.permit(:account_update, keys:[:email, :phone_number, :zip_code, :address, :first_name_kana, :last_name_kana, :first_name, :last_name])
   end 
+
 end
+

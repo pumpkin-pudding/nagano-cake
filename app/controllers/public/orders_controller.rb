@@ -1,25 +1,7 @@
 class Public::OrdersController < ApplicationController
-
  def index
    @order = Order.where(customer_id: current_customer).reverse_order
    @orders = @order.all
-
- 
- def show
-  @order = Order.find(params[:id])
-  @order_details = OrderDtail.where(order_id: @order.id)
- end 
- 
-  def new
-    @order = Order.new
-    @addresses = current_customer.addresses
-  end
-  
-
-
- 
- def thanks
-
  end
 
  def confirm
@@ -32,27 +14,27 @@ class Public::OrdersController < ApplicationController
    @oreder_total_amount = @total_amount + @order.postage.to_i
 
    if params[:order][:select_address] == "0"
-      @order.shipping_post_code = current_customer.post_code
-      @order.shipping_address = current_customer.address
-      @order.shipping_name = current_customer.last_name + current_customer.first_name
+      @order.zip_code = current_customer.zip_code
+      @order.address = current_customer.address
+      @order.name = current_customer.last_name + current_customer.first_name
    elsif params[:order][:select_address] == "1"
       if ShippingAddress.exists?(id: params[:order][:address_id])
-        @address = ShippingAddress.find(params[:order][:address_id])
-        @order.shipping_name = @address.name
-        @order.shipping_post_code = @address.postal_code
-        @order.shipping_address = @address.address
+        @address = Address.find(params[:order][:address_id])
+        @order.name = @address.name
+        @order.zip_code = @address.zip_code
+        @order.address = @address.address
       else
         flash[:notice] = "配送先情報がありません"
         render 'new'
       end
    elsif params[:order][:select_address] == "2"
-      @order.shipping_name = params[:order][:shipping_name]
-      @order.shipping_post_code = params[:order][:shipping_post_code]
-      @order.shipping_address = params[:order][:shipping_address]
+      @order.name = params[:order][:shipping_name]
+      @order.zip_code = params[:order][:zip_code]
+      @order.address = params[:order][:address]
    else
       render 'new'
    end
-      @address = "〒" + @order.shipping_post_code + @order.shipping_address
+      @address = "〒" + @order.zip_code + @order.address
       session[:order] = @order.attributes
    end
 
@@ -62,7 +44,7 @@ class Public::OrdersController < ApplicationController
     @total_amount = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
     @order.postage = 800
     @order_total_amount = @total_amount + @order.postage.to_i
-    @address = "〒" + @order.shipping_post_code + @order.shipping_address
+    @address = "〒" + @order.zip_code + @order.address
    else
     @order = Order.new
    end
