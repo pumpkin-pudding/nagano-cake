@@ -52,10 +52,10 @@ class Public::OrdersController < ApplicationController
    end
 
 
-end
+ end
 
   def show
-  @order = Order.find_by(id: params[:id]) # find_byを使用してデータベースから注文情報を取得する
+  @order = Order.find_by(id: params[:id])
   if @order.nil?
     flash[:error] = "指定された注文情報は存在しません。"
     redirect_to orders_path
