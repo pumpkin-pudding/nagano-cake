@@ -13,7 +13,7 @@ def thanks
 end
 
 def order_params
- params.require(:order).permit(:status)
+ params.require(:order).permit(:creating_status)
 end
 
 end
