@@ -1,29 +1,47 @@
 <div class="container">
     <div class="row item-detail">
-        <div class="col-md-4">
+        <div class="col-xs-4">
             <h2>商品詳細</h2>
             <%= image_tag @item.image, size:'300x200' %>
         </div>
-        <div class="col-md-6">
+        <div class="col-xs-8">
             <table class='table'>
-                <tr>
-                    <td>商品名 <%= @item.name %></td>
-                    <td>商品説明 <%= @item.text %></td>
-                    <td>ジャンル <%= @item.genre_id %></td>
-                    <td>税込価格(税抜価格) <%= (@item.non_taxed_price * 1.1).to_i %>(<%= @item.non_taxed_price %>)円</td>
-                    <td>販売ステータス
-                        <% if @item.is_active == true %>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">商品名</th>
+                        <td><%= @item.name %></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">商品説明</th>
+                        <td><%= @item.text %></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">ジャンル</th>
+                        <td><%= @item.genre_id %></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">税込価格(税抜価格)</th>
+                        <td><%= (@item.non_taxed_price * 1.1).to_i %>(<%= @item.non_taxed_price %>)円</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">販売ステータス</th>
+                        <td><% if @item.is_active == true %>
 				        販売中
 				        <% else %>
 	                    売切れ
 				        <% end %>
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     </div>
-    <div class='row'>
         <%= link_to '編集する', edit_admin_item_path, class: "btn btn-success btn-sm btn-block mb-3" %>
-    </div>
 </div>
 
