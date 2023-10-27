@@ -73,3 +73,24 @@ Address.create(
   adress: 'テスト住所',
   name: '田中愛子'
 )
+
+
+Address.create(
+  customer_id: 1,
+  name: '田中愛子',
+  address: 'テスト住所',
+  zip_code: '1234567',
+  postage: '800',
+  billing_amount: '1000',
+  payment_method: 0,
+  status: 0
+  )
+  
+OrderDetail.create(
+  order_id: 1,
+  item_id: 4,
+  price: '200',
+  amount: 1,
+  creating_status: 0
+ )
+

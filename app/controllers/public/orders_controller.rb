@@ -23,6 +23,7 @@ class Public::OrdersController < ApplicationController
       @order.zip_code = current_customer.zip_code
       @order.address = current_customer.address
       @order.name = current_customer.last_name + current_customer.first_name
+
    elsif params[:order][:select_address] == "1"
       if ShippingAddress.exists?(id: params[:order][:address_id])
         @address = Address.find(params[:order][:address_id])
@@ -33,6 +34,7 @@ class Public::OrdersController < ApplicationController
         flash[:notice] = "配送先情報がありません"
         render 'new'
       end
+
    elsif params[:order][:address_option] == "2"
       @order.name = params[:order][:shipping_name]
       @order.zip_code = params[:order][:zip_code]
@@ -89,6 +91,6 @@ class Public::OrdersController < ApplicationController
    private
 
   def order_params
-   params.require(:order).permit(:shipping_name, :zip_code, :address)
+   params.require(:order).permit(:shipping_name, :zip_code, :address, :payment_method)
   end
 end
