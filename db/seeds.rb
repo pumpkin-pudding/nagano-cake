@@ -58,7 +58,7 @@ Address.create(
   name: '田中愛子'
 )
 
-Order.create(
+
   customer_id: 1,
   name: '田中愛子',
   address: 'テスト住所',
@@ -75,4 +75,4 @@ OrderDetail.create(
   price: '200',
   amount: 1,
   creating_status: 0
-  )
+ 

@@ -25,7 +25,7 @@ before_action :authenticate_customer!, if: :customer_url
     if resource_or_scope == :admin
        new_admin_session_path
     elsif resource_or_scope == :customer
-        root_path
+       root_path
     end
   end
 
