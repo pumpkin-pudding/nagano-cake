@@ -28,28 +28,26 @@ Customer.create(last_name: '田中',
 Admin.create(email: '321@gmail.com',
             password: 'abcdefg3')
 
-Genre.create(
-  name: "ケーキ",
-  )
 
-Genre.create(
-  name: "プリン",
-  )
-
-Genre.create(
-  name: "焼き菓子",
-  )
-
-Genre.create(
-  name: "キャンディ",
-  )
+["ケーキ","プリン","焼き菓子","キャンディ"].each do |name|
+  Genre.create(name: name)
+end
 
 Item.create!(genre_id: '2',
             name: 'かぼちゃプリン',
             text: 'かぼちゃプリンです。',
             is_active: 'true',
             non_taxed_price: '400',
-            image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/kabotya.png")),filename: 'kabotya.png'))
+            image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/kabotya.png")),filename: 'kabotya.png')
+            )
+
+Item.create!(genre_id: '3',
+            name: 'ケーキ',
+            text: 'ケーキです。',
+            is_active: 'true',
+            non_taxed_price: '900',
+            image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/kabotya.png")),filename: 'kabotya.png')
+            )
 
 Address.create(
   customer_id: 1,
@@ -58,21 +56,3 @@ Address.create(
   name: '田中愛子'
 )
 
-
-  customer_id: 1,
-  name: '田中愛子',
-  address: 'テスト住所',
-  zip_code: '1234567',
-  postage: '800',
-  billing_amount: '1000',
-  payment_method: 0,
-  status: 0
-  )
-  
-OrderDetail.create(
-  order_id: 1,
-  item_id: 4,
-  price: '200',
-  amount: 1,
-  creating_status: 0
- 
