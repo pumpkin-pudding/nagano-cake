@@ -39,7 +39,7 @@
                             <tbody>
                                 <tr>
                                     <th>商品合計</th>
-                                    <td><%= @order.billing_amount %>円</td>
+                                    <td><%= (@order.order_details.sum { |order_detail| order_detail.price * 1.1 * order_detail.amount }).floor.to_s(:delimited) %>円</td>
                                 </tr>
                                 <tr>
                                     <th>配送料</th>
@@ -47,7 +47,7 @@
                                 </tr>
                                 <tr>
                                     <th>ご請求額</th>
-                                    <td><%= @order.billing_amount + @order.postage %>円</td>
+                                    <td><%= (@order.postage.to_i + @order.order_details.sum { |order_detail| order_detail.price * 1.1 * order_detail.amount }).floor.to_s(:delimited) %>円</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -68,13 +68,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <% @order_details.each do |order_detail| %>
+                                <% if @order_details.present? %>
+                                <% @order.order_details.each do |order_detail| %>
                                 <tr>
-                                    <td><%= order_item.item.name %></td>
-                                    <td><%= order_item._price %>円</td>
-                                    <td><%= order_item.amount %></td>
-                                    <td><%= order_item.amount * order_item._price %>円</td>
+                                    <td><%= order_detail.item.name %></td>
+                                    <td><%= (order_detail.price*1.1).floor.to_s(:delimited) %>円</td>
+                                    <td><%= order_detail.amount %></td>
+                                    <td><%= (order_detail.price * 1.1 * order_detail.amount).floor.to_s(:delimited) %>円</td>
                                 </tr>
+                              <% end %>
+                              <% else %>
+                              <tr>
+                                  <td colspan="2">注文詳細はありません。</td>
+                              </tr>
                               <% end %>
                             </tbody>
                         </table>
