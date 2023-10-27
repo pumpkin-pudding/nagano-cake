@@ -1,13 +1,11 @@
 class Public::CartItemsController < ApplicationController
   def index
-    # @cart_items = current_customer.cart_items.all(ログイン機能ができたら追加)
-    @cart_items = CartItem.all
+    @cart_items = current_customer.cart_items
     @total_price = 0
   end
 
  def create
   @cart_item = CartItem.new(cart_items_params)
-  current_customer = Customer.find(1)
   @cart_item.customer_id = current_customer.id
   @cart_items = current_customer.cart_items.all
 
