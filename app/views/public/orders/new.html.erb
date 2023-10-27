@@ -10,8 +10,8 @@
         <h4 class="h4 mt-4">
           <b>支払方法</b>
         </h4>
-        <%= f.radio_button :payment_option, 0, checked: true, class: "ml-4" %>クレジットカード<br>
-        <%= f.radio_button :payment_option, 1, class: "ml-4"  %>銀行振込
+        <%= f.radio_button :payment_method, "credit_card", checked: true, class: "ml-4" %>クレジットカード<br>
+        <%= f.radio_button :payment_method, "transfer", class: "ml-4"  %>銀行振込
         <h4 class="h4 mt-4">
           <b>お届け先</b>
         </h4>
