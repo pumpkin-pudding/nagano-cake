@@ -19,21 +19,21 @@
      <tr id="cart_item">
      <td class="align-middle"><%= order.created_at.strftime('%Y/%m/%d') %></td>
      <td class="align-middle">
-       〒<%= zip_code %><br>
-       <%= oreder.address %><br>
-       <%= oreder.name %>
+       〒<%= order.zip_code %><br>
+       <%= order.address %><br>
+       <%= order.name %>
      </td>
      <td class="align-middle">
-       <% oreder.items.each do |item| %>
+       <% order.order_details.each do |order_detail| %>
         <div class="row">
          <div class="col">
-          <%= item.name %>
+          <%= order_detail.item.name %>
          </div>
         </div>
        <% end %>
      </td>
-     <td class="align-middle text=center"><%= oreder.billing_amount.to_s(:delimited) %>円</td>
-     <td class="align-middle"><%= oreder.status_i18n %></td>
+     <td class="align-middle text=center"><%= order.billing_amount.to_s(:delimited) %>円</td>
+     <td class="align-middle"><%= order.status %></td>
      <td class="align=middle text-center"><%= link_to '表示する', order_path(order),class: "btn", style: "background-color: #1A120B; #E5E%CB;" %></td>
      </td>
     </tr>

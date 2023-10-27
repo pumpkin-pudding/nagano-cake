@@ -68,20 +68,21 @@
           <th scope="col" style="width: 15%">単価(税込)</th>
           <th scope="col" style="width: 10%">数量</th>
           <th scope="col" style="width: 15%">小計</th>
-          <th scope="col" style="width: 25%">制作ステータス</th>
+          <th scope="col" style="width: 25%">製作ステータス</th>
         </tr>
       </thead>
       <tbody class="production_status">
          <% @order_items.each do |order_item| %>
          <tr valign="middle">
-         <td align="center"><%= (@order.billing_amount*1.1).floor.to_s(:delimited) %>円</td>
+         <td align="center"><%= order_item.item.name %></td>
+         <td align="center"><%= (order_item.price*1.1).floor.to_s(:delimited) %>円</td>
          <td align="center"><%= order_item.amount %></td>
-         <td align="center"><%= order_item.price.to_s(:delimited) %>円</td>
 
          <td align="center">
-         <p><%= (@order.billing_amount*1.1).floor.to_s(:delimited) %>円</p>
-         <%= form_with(model: @order, url: admin_order_path(@order), local: true, method: :patch) do |f| %>
-         <%= f.select :order_status,OrderDetail.order_status %>
+         <%= (order_item.price * 1.1 * order_item.amount).to_i %>円</td>
+         <td align="center">
+        <%= form_with model: order_item, url: admin_order_detail_path(order_item.id), method: :patch do |f| %>
+        <%= f.select :creating_status, OrderDetail.creating_statuses.keys.map { |s| [OrderDetail.human_attribute_name("status.#{s}"), s] } %>
          <%= f.submit "更新",class:"btn btn-sm" %>
          <% end %>
          <% end %>
@@ -98,7 +99,7 @@
       <tbody>
          <tr>
            <td><strong>商品合計</strong></td>
-           <td align="right"><%= number_with_delimiter(@order.billing_amount - @order.postage) %>円</td>
+           <td align="right"><%= (@order.order_details.sum { |order_detail| order_detail.price * 1.1 * order_detail.amount }).floor.to_s(:delimited) %>円</td>
          </tr>
 
            <td><strong>送料</strong></td>
@@ -107,7 +108,7 @@
 
          <tr>
            <td><strong>請求金額合計</strong></td>
-           <td align="right"><%= @order.billing_amount.to_s(:delimited)%>円</td>
+           <td align="right"><%= (@order.postage.to_i + @order.order_details.sum { |order_detail| order_detail.price * 1.1 * order_detail.amount }).floor.to_s(:delimited) %>円</td>
          </tr>
       </tbody>
       </table>

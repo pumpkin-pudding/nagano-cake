@@ -25,8 +25,8 @@ class Public::OrdersController < ApplicationController
       @order.address = current_customer.address
       @order.name = current_customer.last_name + current_customer.first_name
    elsif params[:order][:address_option] == "1"
-      if ShippingAddress.exists?(id: params[:order][:address_id])
-        @address = Address.find(params[:order][:address_id])
+      if Address.exists?(id: params[:order][:registration_addresses])
+        @address = Address.find(params[:order][:registration_addresses])
         @order.name = @address.name
         @order.zip_code = @address.zip_code
         @order.address = @address.address
@@ -35,14 +35,14 @@ class Public::OrdersController < ApplicationController
         render 'new'
       end
    elsif params[:order][:address_option] == "2"
-      @order.name = params[:order][:shipping_name]
+      @order.name = params[:order][:name]
       @order.zip_code = params[:order][:zip_code]
       @order.address = params[:order][:address]
    else
       render 'new'
    end
    end
-end
+ end
 
    def complete
     order = Order.new(order_params)
@@ -60,10 +60,10 @@ end
     render 'thanks'
    end
 
-   def show
+  def show
     @order = Order.find(params[:id])
-    @cart_items = current_customer.cart_items
-   end
+    @order_details= OrderDetail.where(order_id: @order.id)
+  end
 
    private
 
