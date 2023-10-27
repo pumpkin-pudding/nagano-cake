@@ -73,3 +73,14 @@ Address.create(
   adress: 'テスト住所',
   name: '田中愛子'
 )
+
+Order.create(
+  id
+  customer_id
+  name
+  address
+  zip_code
+  
+  
+  
+  )
