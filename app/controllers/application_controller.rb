@@ -1,11 +1,16 @@
 class ApplicationController < ActionController::Base
  #before_action :configure_permitted_parameters, if: :devise_controller?
-# before_action :authenticate_admin!, if: :admin_url
+before_action :authenticate_admin!, if: :admin_url
+before_action :authenticate_customer!, if: :customer_url
 
-#   private
-#   def admin_url
-#     request.fullpath.starts_with?('/admin')
-#   end
+   private
+   def admin_url
+     request.fullpath.starts_with?('/admin')
+   end
+   
+   def customer_url
+     request.fullpath.starts_with?('/cart_items')
+   end
 
    def after_sign_in_path_for(resource)
      case resource

@@ -10,6 +10,14 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
           <li>
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="商品検索">
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-primary">検索</button>
+                </span>
+              </div>
+            </li>
+          <li>
             <%= link_to customers_information_path,class: 'nav-link text-dark' do %>
               マイページ
             <% end %>

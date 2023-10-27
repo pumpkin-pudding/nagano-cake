@@ -74,19 +74,21 @@
       <tbody class="production_status">
          <% @order_items.each do |order_item| %>
          <tr valign="middle">
-         <td align="center"><%= order_item.item.with_tax_price.to_s(:delimited) %>円</td>
+         <td align="center"><%= (@order.billing_amount*1.1).floor.to_s(:delimited) %>円</td>
          <td align="center"><%= order_item.amount %></td>
          <td align="center"><%= order_item.price.to_s(:delimited) %>円</td>
 
          <td align="center">
-         <%=form_with model: order_item ,url:admin_order_item_path(order_item), local:true, method: :patch do |f| %>
-         <%= f.select :order_status,OrderItem.order_status %>
+         <p><%= (@order.billing_amount*1.1).floor.to_s(:delimited) %>円</p>
+         <%= form_with(model: @order, url: admin_order_path(@order), local: true, method: :patch) do |f| %>
+         <%= f.select :order_status,OrderDetail.order_status %>
          <%= f.submit "更新",class:"btn btn-sm" %>
+         <% end %>
          <% end %>
          </td>
 
          </tr>
-         <% end %>
+
       </tbody>
     </table>
     </div>

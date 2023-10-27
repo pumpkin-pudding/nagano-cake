@@ -3,15 +3,19 @@ class Public::OrdersController < ApplicationController
    @order = Order.where(customer_id: current_customer).reverse_order
    @orders = @order.all
  end
- def new
-   @order = Order.new
- end
+
+  def new
+    @order = Order.new
+    @customer = current_customer
+    @addresses = @customer.addresses
+  end
+
  def confirm
    if params[:order]
    @order = Order.new(order_params)
    @order.customer_id = current_customer.id
    @cart_items = current_customer.cart_items
-   @total_amount = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
+   @total_amount = @cart_items.inject(0) { |sum, item| sum + item.amount }
    @order.postage = 800
    @oreder_total_amount = @total_amount + @order.postage.to_i
 
@@ -19,7 +23,7 @@ class Public::OrdersController < ApplicationController
       @order.zip_code = current_customer.zip_code
       @order.address = current_customer.address
       @order.name = current_customer.last_name + current_customer.first_name
-   elsif params[:order][:address_option] == "1"
+   elsif params[:order][:select_address] == "1"
       if ShippingAddress.exists?(id: params[:order][:address_id])
         @address = Address.find(params[:order][:address_id])
         @order.name = @address.name
@@ -47,12 +51,23 @@ class Public::OrdersController < ApplicationController
     @order.postage = 800
     @order_total_amount = @total_amount + @order.postage.to_i
     @address = "〒" + @order.zip_code.to_s + @order.address.to_s
+    @addresses = current_customer.addresses
    else
     @order = Order.new
+    @addresses = current_customer.addresses
+   end
+ end
+
+   def complete
+    render 'thanks'
+   end
+
+   def show
+     @order = Order.find(params[:id])
    end
 
 
- end
+
 
   def show
   @order = Order.find_by(id: params[:id])
@@ -69,10 +84,11 @@ class Public::OrdersController < ApplicationController
 
 
 
+
+
    private
 
-    def order_params
-      params.require(:order).permit(:shipping_name, :zip_code, :address)
-    end
-
+  def order_params
+   params.require(:order).permit(:shipping_name, :zip_code, :address)
+  end
 end
