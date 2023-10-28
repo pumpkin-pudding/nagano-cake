@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1.0">
+ <link rel="stylesheet" href="style.css" />
+</head>
+
+<div class="container">
+ <div class="row mt-3 justify-content-between">
+  <div class="col">
+    ショッピングカート
+  </div>
+   <div class="col offset-md-7">
+    <%= link_to all_destroy_path, class:"btn btn-danger", method: :delete do %>カートを空にする
+    <% end %>
+   </div>
+  </div>
+ <div class="row mt-3">
+  <div class="col">
+   <table class="table table-bordered">
+    <thead>
+     <tr>
+      <th class="pl-5">商品名</th>
+      <th class="pl-5">単価</th>
+      <th class="pl-5">数量</th>
+      <th class="pl-5">小計</th>
+      <th></th>
+     </tr>
+    </thead>
+    <tbody>
+     <% @cart_items.each do |cart_item| %>
+      <tr>
+       <td><%= cart_item.item.name %></td>
+       <td><%= cart_item.item.non_taxed_price %></td>
+       <td>
+       <%= form_with model: cart_item, url: cart_item_path(cart_item.id), local: true do |f| %>
+       <%= f.select :amount, *[1 ... 100] %>
+       <%= f.submit '変更', class:"btn btn-success" %>
+       </td>
+       <td><%= cart_item.item.non_taxed_price * cart_item.amount %></td>
+       <td class="mx-auto" style="text-align: center;"><%= link_to "削除する", cart_item_path(cart_item.id), class:"btn btn-danger", method: :delete %></td>
+       <% end %>
+      </tr>
+  </div>
+ </div>
+ <div class="row mt-3">
+  <div class="col">
+   <tr>
+    <% @total_price = @total_price + cart_item.item.non_taxed_price * cart_item.amount %>
+    <% end %>
+   </tr>
+  </div>
+ </div>
+      </tbody>
+   </table>
+ <div class="row mt-3 justify-content-between">
+  <div class="col">
+    <td class="slign-middle"><%= link_to root_path, class:"btn btn-success" do %>買い物を続ける</td>
+    <% end %>
+  </div>
+  <div class="col">
+   <table class="table table-bordered">
+    <td>合計金額</td>
+    <td class="slign-middle"><%= @total_price %></td>
+   </table>
+  </div>
+ </div>
+ <div class="row mt-3 ">
+  <!--<div class="col-4"></div>-->
+  <!--<div class="d-grid gap-2 col-4 mx-auto">-->
+  <% if @cart_items.any? %>
+   <%= link_to new_order_path, class:"button_custom btn btn-success center-block mx-auto" do %>情報を入力する
+   <% end %>
+   <% end %>
+   <!--<div class="col-4"></div>-->
+  <!--</div>-->
+ </div>
+</div>

@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="col-md-8 mx-auto mt-5">
+   <div>
+<div class="row mb-3">
+      <h4 class= "px-3 mb-3 bg-secondary text-dark font-weight-light">商品新規登録</h4><br>
+  </div>
+  </div>
+</div>
+
+    <div class="row justify-content-center">
+    <%= form_with model: @item, url:admin_items_path, method: :post do |f|  %>
+      <table class="table table-borderless">
+         <tbody>
+         <tr>
+           <td><%= f.label :商品画像 %></td>
+           <td><%= f.file_field :image,accept: "image/*" %></td>
+         </tr>
+
+         <tr>
+           <td><%= f.label :商品名 %></td>
+           <td><%= f.text_field :name, autofocus: true, placeholder:"商品名",class:"form-control" , style: "width: 300px;" %></td>
+         </tr>
+
+         <tr>
+           <td><%= f.label :商品説明 %></td>
+           <td><%= f.text_area :text, placeholder:"ここに説明文を記述します",rows:"5",class:"form-control" , style: "width: 300px;" %></td>
+         </tr>
+
+         <tr>
+           <td><%= f.label :ジャンル %></td>
+           <td>
+             <div class="form-group custom-dropdown">
+               <%= f.select :genre_id, options_for_select(@genres.map { |genre| [genre.name, genre.id] }), include_blank: "-- 選択してください--", style: "width: 250px;" %>
+             </div>
+           </td>
+         </tr>
+
+
+         <tr>
+           <td><%= f.label :税抜価格 %></td>
+           <td>
+             <div class="form-group">
+               <div style="display: inline-block;"><%= f.text_field :non_taxed_price, placeholder: "1000", class: "form-control" , style: "width: 300px;" %></div><span style="display: inline;">円</span>
+　　　　　   </div>
+             </div>
+           </td>
+         </tr>
+
+         <tr>
+           <td><%= f.label :販売ステータス %></td>
+           <td>
+              <%= f.radio_button :is_active, true %>
+              <%= f.label :is_active, "販売中", value: true %>
+              <%= f.radio_button :is_active, false, class:"ml-3" %>
+              <%= f.label :is_active, "販売停止中", value: false %>
+            </td>
+          </tr>
+        </tbody>
+       </table>
+
+   <div class="raw text-center mt-3">
+            <%= f.submit "新規登録" , class:"btn w-25", style: "background-color: #28a745; color: #E5E5CB;" %>
+
+   </div>
+   </div>
+            <% end %>
+  </div>
+ </div>
