@@ -41,7 +41,7 @@ Item.create!(genre_id: '2',
             image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app/assets/images/kabotya.png")),filename: 'kabotya.png')
             )
 
-Item.create!(genre_id: '3',
+Item.create!(genre_id: '1',
             name: 'ケーキ',
             text: 'ケーキです。',
             is_active: 'true',
